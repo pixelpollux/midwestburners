@@ -45,7 +45,9 @@ wp-content/db.php
 #!wp-content/uploads/maxmegamenu/
 
 # Plugin specific
-#!wp-content/plugins/akismet/*
+!wp-content/plugins/matchbox-blocks/
+!wp-content/plugins/matchbox-blocks/**/*
+wp-content/plugins/matchbox-blocks/node_modules
 
 # WP Engine specific
 .smushit-status
