@@ -44,12 +44,6 @@ wp-content/db.php
 # Theme specific
 #!wp-content/uploads/maxmegamenu/
 
-# Plugin specific
-!wp-content/plugins/matchbox-blocks/
-!wp-content/plugins/matchbox-blocks/**/*
-wp-content/plugins/matchbox-blocks/node_modules
-wp-content/plugins/matchbox-blocks/vendor
-
 # WP Engine specific
 .smushit-status
 wp-content/object-cache.php
