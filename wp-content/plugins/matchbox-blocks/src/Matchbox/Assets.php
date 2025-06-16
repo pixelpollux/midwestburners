@@ -43,7 +43,6 @@ class Assets {
 	public function enqueue_editor_assets() {
 		// Enqueue each block's build files individually.
 		$this->enqueue_block_asset( 'grid-item', 'matchbox-grid-item' );
-		$this->enqueue_block_asset( 'pattern-library-block', 'matchbox-pattern-library-block' );
 		$this->enqueue_block_asset( 'slider', 'matchbox-slider' );
 	}
 
