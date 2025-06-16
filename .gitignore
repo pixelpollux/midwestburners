@@ -48,6 +48,7 @@ wp-content/db.php
 !wp-content/plugins/matchbox-blocks/
 !wp-content/plugins/matchbox-blocks/**/*
 wp-content/plugins/matchbox-blocks/node_modules
+wp-content/plugins/matchbox-blocks/vendor
 
 # WP Engine specific
 .smushit-status
