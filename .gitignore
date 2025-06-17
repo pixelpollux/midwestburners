@@ -34,6 +34,7 @@ wp-content/blogs.dir/
 wp-content/cache/*
 wp-content/cache/supercache/*
 wp-content/plugins/*
+!wp-content/plugins/matchbox-blocks/
 wp-content/themes/twenty*
 wp-content/uploads/*
 wp-content/upgrade/*
@@ -49,6 +50,8 @@ wp-content/db.php
 wp-content/object-cache.php
 wp-content/mu-plugins/mu-plugin.php
 wp-content/mysql.sql
+
+# Plugin
 
 # WP core (as of 4.9.5)
 /db-config.php
