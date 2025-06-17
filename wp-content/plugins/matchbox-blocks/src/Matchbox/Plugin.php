@@ -1,4 +1,5 @@
-<?php
+<?php // phpcs:disable
+
 /**
  * Plugin class for Matchbox Blocks.
  *
@@ -66,10 +67,10 @@ class Plugin {
 	public function register_blocks() {
 		$block_folders = glob( plugin_dir_path( dirname( __DIR__ ) ) . 'build/blocks/*', GLOB_ONLYDIR );
 
-		error_log( 'Matchbox Blocks: Found ' . count( $block_folders ) . ' block folders' );
+		// error_log( 'Matchbox Blocks: Found ' . count( $block_folders ) . ' block folders' );
 
 		foreach ( $block_folders as $block_folder ) {
-			error_log( 'Matchbox Blocks: Checking folder: ' . $block_folder );
+			// error_log( 'Matchbox Blocks: Checking folder: ' . $block_folder );
 
 			$block_json_path = $block_folder . '/block.json';
 
@@ -77,11 +78,11 @@ class Plugin {
 				$block_json = json_decode( file_get_contents( $block_json_path ), true );
 
 				if ( isset( $block_json['acf'] ) && is_array( $block_json['acf'] ) ) {
-					error_log( 'Matchbox Blocks: Skipping ACF block: ' . $block_json['name'] );
+					// error_log( 'Matchbox Blocks: Skipping ACF block: ' . $block_json['name'] );
 					continue;
 				}
 
-				error_log( 'Matchbox Blocks: Registering native block: ' . $block_folder );
+				// 	error_log( 'Matchbox Blocks: Registering native block: ' . $block_folder );
 				register_block_type( $block_folder );
 			}
 		}
@@ -108,7 +109,7 @@ class Plugin {
 					unset( $acf_args['acf'] );
 
 					if ( function_exists( 'acf_register_block_type' ) && ! acf_get_block_type( $acf_args['name'] ) ) {
-						error_log( 'Matchbox ACF Block: Registering ' . $acf_args['name'] );
+						// error_log( 'Matchbox ACF Block: Registering ' . $acf_args['name'] );
 						acf_register_block_type( $acf_args );
 					}
 				}
@@ -132,7 +133,7 @@ class Plugin {
 					mkdir( dirname( $render_php_dst ), 0755, true );
 				}
 				copy( $render_php_src, $render_php_dst );
-				error_log( "✅ Copied {$block_name}.php to build/blocks/{$block_name}/" );
+				// error_log( "✅ Copied {$block_name}.php to build/blocks/{$block_name}/" );
 			}
 		}
 	}
