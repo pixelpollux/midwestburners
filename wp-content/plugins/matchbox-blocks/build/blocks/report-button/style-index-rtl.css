@@ -1,1 +1,1 @@
-.wp-block-kindling-report-button .kindling-report-button{margin:1rem 0}.wp-block-kindling-report-button .kindling-report-button .btn-textlink{border-radius:4px;display:inline-block;padding:.5rem 1rem;text-decoration:none;transition:all .3s ease}.wp-block-kindling-report-button .kindling-report-button .btn-textlink:hover{text-decoration:underline}
+.editor-styles-wrapper .kindling-report-button,.kindling-report-button{@apply mt-3}.editor-styles-wrapper .kindling-report-button a,.kindling-report-button a{@apply text-navy}
