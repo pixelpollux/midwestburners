@@ -13,15 +13,22 @@
 	],
 	"version": "1.0.0",
 	"textdomain": "kindling",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": "Afterburn Report"
+		}
+	},
 	"supports": {
 		"align": false,
 		"multiple": true,
 		"anchor": false
 	},
-	"acf": {
-		"mode": "preview",
-		"renderTemplate": "report-button.php"
-	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"editorScript": "file:./index.js",
-	"style": "file:./style.css"
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
 }
