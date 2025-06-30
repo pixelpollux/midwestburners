@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/src/blocks/slider/enqueue.php';
 require_once __DIR__ . '/src/acf-blocks.php';
 
 use Matchbox\Plugin;
