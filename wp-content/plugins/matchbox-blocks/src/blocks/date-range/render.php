@@ -6,6 +6,8 @@
  * @package MatchboxBlocks
  */
 
+$style = '';
+
 // Support custom "anchor" values.
 $anchor = '';
 if (! empty($block['anchor'])) {
