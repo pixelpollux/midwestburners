@@ -57,6 +57,6 @@ if ( ! function_exists( 'kindling_render_report_button_block' ) ) {
 		}
 
 		// Output a the event link on the frontend with the title of the event.
-		return '<div class="kindling-report-button"><a class="btn-textlink" href="' . esc_url( $btnUrl ) . '">' . esc_html( $btnText ) . '</a></div>';
+		return '<div class="kindling-report-button"><a class="btn btn-textlink btn-download" href="' . esc_url( $btnUrl ) . '" download>' . esc_html( $btnText ) . '</a></div>';
 	}
 }

@@ -74,11 +74,13 @@ registerBlockType('kindling/report-button', {
 			// Content displayed in the editor.
 			<div {...props.blockProps}>
 				<a
-					className="btn-textlink"
+					className="btn btn-textlink btn-download"
 					href={btnUrl}
 					target="_blank"
 					rel="noopener"
 					aria-label="Afterburn Report"
+					style={{ cursor: 'pointer' }}
+					onClick={preventDefaultClick}
 				>
 					Afterburn Report
 				</a>
