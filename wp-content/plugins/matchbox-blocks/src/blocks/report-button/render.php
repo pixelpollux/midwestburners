@@ -53,7 +53,7 @@ if ( ! function_exists( 'kindling_render_report_button_block' ) ) {
 		$btnText = $attributes['text'] ?? 'More Details';
 
 		if ( ! $btnUrl ) {
-			return '<div role="alert"><p>This event doesn\'t have a link.</p></div>';
+			return '';
 		}
 
 		// Output a the event link on the frontend with the title of the event.
