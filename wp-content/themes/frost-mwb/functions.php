@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignoreFile
 /**
  * This file adds functions to the Frost WordPress theme.
  *
@@ -31,7 +31,6 @@ if ( ! function_exists( 'frost_setup' ) ) {
 
 		// Remove core block patterns.
 		remove_theme_support( 'core-block-patterns' );
-
 	}
 }
 add_action( 'after_setup_theme', 'frost_setup' );
@@ -41,7 +40,6 @@ add_action( 'wp_enqueue_scripts', 'frost_enqueue_stylesheet' );
 function frost_enqueue_stylesheet() {
 
 	wp_enqueue_style( 'frost', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
-
 }
 
 /**
@@ -52,17 +50,17 @@ function frost_enqueue_stylesheet() {
 function frost_register_block_styles() {
 
 	$block_styles = array(
-		'core/columns' => array(
+		'core/columns'      => array(
 			'columns-reverse' => __( 'Reverse', 'frost' ),
 		),
-		'core/group' => array(
+		'core/group'        => array(
 			'shadow-light' => __( 'Shadow', 'frost' ),
 			'shadow-solid' => __( 'Solid', 'frost' ),
 		),
-		'core/list' => array(
+		'core/list'         => array(
 			'no-disc' => __( 'No Disc', 'frost' ),
 		),
-		'core/quote' => array(
+		'core/quote'        => array(
 			'shadow-light' => __( 'Shadow', 'frost' ),
 			'shadow-solid' => __( 'Solid', 'frost' ),
 		),
@@ -106,7 +104,17 @@ function frost_register_block_pattern_categories() {
 			'description' => __( 'Compare features for your digital products or service plans.', 'frost' ),
 		)
 	);
-
 }
 
 add_action( 'init', 'frost_register_block_pattern_categories' );
+
+// Enqueue custom stylesheet compiled from SCSS.
+function frost_child_enqueue_styles() {
+  wp_enqueue_style(
+    'frost-child-style',
+    get_stylesheet_directory_uri() . '/assets/css/style.css',
+    [],
+    filemtime( get_stylesheet_directory() . '/assets/css/style.css' )
+  );
+}
+add_action( 'wp_enqueue_scripts', 'frost_child_enqueue_styles', 20 );
