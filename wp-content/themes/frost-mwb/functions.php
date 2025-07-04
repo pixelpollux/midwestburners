@@ -118,3 +118,96 @@ function frost_child_enqueue_styles() {
   );
 }
 add_action( 'wp_enqueue_scripts', 'frost_child_enqueue_styles', 20 );
+
+/**
+ * Add site-specific body classes for multisite targeting.
+ *
+ * @param array $classes Array of body classes.
+ * @return array Modified array of body classes.
+ */
+function frost_add_site_body_classes( $classes ) {
+	if ( is_multisite() ) {
+		$current_blog_id = get_current_blog_id();
+		$current_blog_name = get_bloginfo( 'name' );
+		$current_blog_domain = get_bloginfo( 'url' );
+
+		// Add site ID class.
+		$classes[] = 'site-id-' . $current_blog_id;
+
+		// Add site name class (sanitized for CSS).
+		$site_name_slug = sanitize_title( $current_blog_name );
+		$classes[] = 'site-name-' . $site_name_slug;
+
+		// Add domain-based class.
+		$domain_slug = sanitize_title( parse_url( $current_blog_domain, PHP_URL_HOST ) );
+		$classes[] = 'site-domain-' . $domain_slug;
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'frost_add_site_body_classes' );
+
+/**
+ * Conditionally enqueue site-specific styles based on site ID.
+ *
+ * @return void
+ */
+function frost_enqueue_site_specific_styles() {
+	if ( ! is_multisite() ) {
+		return;
+	}
+
+	$current_blog_id = get_current_blog_id();
+
+	// Example: Enqueue different styles for specific site IDs.
+	switch ( $current_blog_id ) {
+		case 1:
+			// Main site styles.
+			wp_enqueue_style(
+				'frost-main-site',
+				get_stylesheet_directory_uri() . '/assets/css/main-site.css',
+				array( 'frost-child-style' ),
+				filemtime( get_stylesheet_directory() . '/assets/css/main-site.css' )
+			);
+			break;
+
+		case 2:
+			// Secondary site styles.
+			wp_enqueue_style(
+				'frost-secondary-site',
+				get_stylesheet_directory_uri() . '/assets/css/secondary-site.css',
+				array( 'frost-child-style' ),
+				filemtime( get_stylesheet_directory() . '/assets/css/secondary-site.css' )
+			);
+			break;
+
+		case 3:
+			// Third site styles.
+			wp_enqueue_style(
+				'frost-third-site',
+				get_stylesheet_directory_uri() . '/assets/css/third-site.css',
+				array( 'frost-child-style' ),
+				filemtime( get_stylesheet_directory() . '/assets/css/third-site.css' )
+			);
+			break;
+	}
+}
+add_action( 'wp_enqueue_scripts', 'frost_enqueue_site_specific_styles', 25 );
+
+/**
+ * Helper function to get current site info for use in SCSS variables.
+ *
+ * @return array Array containing site information.
+ */
+function frost_get_site_info() {
+	if ( ! is_multisite() ) {
+		return array();
+	}
+
+	return array(
+		'id' => get_current_blog_id(),
+		'name' => get_bloginfo( 'name' ),
+		'domain' => get_bloginfo( 'url' ),
+		'is_main_site' => is_main_site(),
+	);
+}
