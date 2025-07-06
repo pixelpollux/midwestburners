@@ -91,6 +91,11 @@ class Plugin {
 						$block_args['render_callback'] = 'kindling_render_report_button_block';
 					}
 
+					// For test-button block, set the render callback
+					if ( $block_json['name'] === 'kindling/dynamic-button' ) {
+						$block_args['render_callback'] = 'kindling_dynamic_button_render';
+					}
+
 					register_block_type( $block_folder, $block_args );
 				} else {
 					register_block_type( $block_folder );

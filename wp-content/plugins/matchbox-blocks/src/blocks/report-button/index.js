@@ -19,7 +19,7 @@ registerBlockType('kindling/report-button', {
 		const { postId } = context;
 
 		const [btnUrl, setBtnUrl] = useState('');
-		// const [btnText, setBtnText] = useState('');
+		const [btnText, setBtnText] = useState('');
 
 		useEffect(() => {
 			let is_interfuse_cpt = true;

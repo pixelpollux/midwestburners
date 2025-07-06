@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "kindling/dynamic-button",
+  "title": "Dynamic Button",
+  "description": "Pulls a URL from ACF (or another site in multisite) and renders it as a link styled like a button.",
+  "category": "design",
+  "icon": "admin-links",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Click me"
+    },
+    "siteId": {
+      "type": "integer"
+    },
+    "metaKey": {
+      "type": "string"
+    },
+    "postId": {
+      "type": "integer"
+    }
+  },
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "width": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

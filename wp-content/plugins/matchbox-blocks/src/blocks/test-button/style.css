@@ -1,0 +1,12 @@
+.wp-block-kindling-dynamic-button.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border: 1px solid #0073aa;
+  background: #0073aa;
+  color: #fff;
+  text-decoration: none;
+}
+.wp-block-kindling-dynamic-button.button:hover {
+  background: #005177;
+}
