@@ -18,7 +18,7 @@
 	},
 	"acf": {
 		"mode": "preview",
-		"renderTemplate": "render.php"
+		"renderTemplate": "date-range.php"
 	},
 	"style": "file:./style.css"
 }

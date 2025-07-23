@@ -1,5 +1,4 @@
-<?php // phpcs:disable
-
+<?php
 /**
  * Handle script and style enqueues for Matchbox Blocks.
  *
@@ -28,8 +27,7 @@ class Assets {
 	 * @return void
 	 */
 	public function init() {
-		// WordPress automatically handles block assets through block.json
-		// add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_assets' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_assets' ] );
 
 		// If you have front-end scripts or styles, use wp_enqueue_scripts or enqueue_block_assets.
 		// add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ] );.
@@ -42,12 +40,9 @@ class Assets {
 	 *
 	 * @return void
 	 */
-	/*
 	public function enqueue_editor_assets() {
 		// Enqueue each block's build files individually.
-		$this->enqueue_block_asset( 'grid-item', 'matchbox-grid-item' );
 	}
-	*/
 
 	/**
 	 * Helper function to enqueue a single block's build files based on its folder name.

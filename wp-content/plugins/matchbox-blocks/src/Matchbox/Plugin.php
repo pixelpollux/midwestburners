@@ -1,5 +1,4 @@
-<?php // phpcs:disable
-
+<?php
 /**
  * Plugin class for Matchbox Blocks.
  *
@@ -33,8 +32,8 @@ class Plugin {
 	 * @return void
 	 */
 	public function __construct() {
-		// Copy native render templates into build/ if needed
-		$this->copy_render_templates();
+		// Copy ACF render templates into build/ if needed
+		$this->copy_acf_render_templates();
 
 		// Load helpers
 		require_once plugin_dir_path( dirname( __DIR__ ) ) . 'src/acf-blocks.php';
@@ -77,24 +76,7 @@ class Plugin {
 					continue;
 				}
 
-				// Check if render.php exists
-				$render_path = $block_folder . '/render.php';
-				if ( file_exists( $render_path ) ) {
-					// Include the render file
-					include_once $render_path;
-
-					// Register block with explicit render callback
-					$block_args = $block_json;
-
-					// For report-button block, set the render callback
-					if ( $block_json['name'] === 'kindling/report-button' ) {
-						$block_args['render_callback'] = 'kindling_render_report_button_block';
-					}
-
-					register_block_type( $block_folder, $block_args );
-				} else {
-					register_block_type( $block_folder );
-				}
+				register_block_type( $block_folder );
 			}
 		}
 	}
@@ -120,7 +102,6 @@ class Plugin {
 					unset( $acf_args['acf'] );
 
 					if ( function_exists( 'acf_register_block_type' ) && ! acf_get_block_type( $acf_args['name'] ) ) {
-						// error_log( 'Matchbox ACF Block: Registering ' . $acf_args['name'] );
 						acf_register_block_type( $acf_args );
 					}
 				}
@@ -128,24 +109,26 @@ class Plugin {
 		}
 	}
 
-	private function copy_render_templates() {
-		$src_blocks_path = plugin_dir_path( dirname( __DIR__ ) ) . 'src/blocks/';
+	private function copy_acf_render_templates() {
+		$src_blocks_path   = plugin_dir_path( dirname( __DIR__ ) ) . 'src/blocks/';
 		$build_blocks_path = plugin_dir_path( dirname( __DIR__ ) ) . 'build/blocks/';
 
-		foreach ( glob( $src_blocks_path . '*' , GLOB_ONLYDIR ) as $src_folder ) {
-			$slug = basename( $src_folder );
+		$block_folders = glob( $src_blocks_path . '*', GLOB_ONLYDIR );
 
-			// Copy render.php files for all blocks (native and ACF)
-			$src = "{$src_folder}/render.php";
-			$dst = "{$build_blocks_path}{$slug}/render.php";
-			if ( file_exists( $src ) ) {
-				if ( ! file_exists( dirname( $dst ) ) ) {
-					mkdir( dirname( $dst ), 0755, true );
+		foreach ( $block_folders as $src_folder ) {
+			$block_name     = basename( $src_folder );
+			$render_php_src = $src_folder . '/' . $block_name . '.php';
+			$render_php_dst = $build_blocks_path . $block_name . '/' . $block_name . '.php';
+
+			if ( file_exists( $render_php_src ) ) {
+				if ( ! file_exists( dirname( $render_php_dst ) ) ) {
+					mkdir( dirname( $render_php_dst ), 0755, true );
 				}
-				copy( $src, $dst );
+				copy( $render_php_src, $render_php_dst );
 			}
 		}
 	}
+
 
 	/**
 	 * Code to run on plugin activation.
