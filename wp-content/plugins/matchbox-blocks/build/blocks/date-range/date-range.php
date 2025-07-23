@@ -1,12 +1,13 @@
-<?php // phpcs:disable
-
+<?php
 /**
  * Renders ACF dates in a range.
  *
  * @package MatchboxBlocks
  */
 
-$style = '';
+// phpcs:disable
+
+echo '<!-- Render template loaded: kindling/date-range -->';
 
 // Support custom "anchor" values.
 $anchor = '';
@@ -25,17 +26,8 @@ if (! empty($block['align'])) {
 }
 
 $dates = get_field( 'dates', get_the_ID() );
-
-if ( ! $dates ) {
-	return;
-}
-
 $date_start = $dates['date_start'];
 $date_end = $dates['date_end'];
-
-if ( ! $date_start ) {
-	return;
-}
 
 ?>
 <div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo esc_attr( $style ); ?>">
@@ -48,8 +40,7 @@ if ( ! $date_start ) {
 		}
 		?>
 	</span>
-	<?php if ( $date_end ) : ?>
-		-
+	-
 	<span class="date-range__date-end">
 		<?php
 		$date_obj = DateTime::createFromFormat( 'd/m/Y', $date_end ); // current format is day/month/year
@@ -58,7 +49,6 @@ if ( ! $date_start ) {
 		}
 		?>
 	</span>
-	<?php endif; ?>
   </div>
   <div class="date-range__content">
 	<?php echo $content; ?>
