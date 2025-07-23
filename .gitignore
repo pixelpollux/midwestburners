@@ -21,10 +21,12 @@ composer.lock
 .env.*
 !.env.sample
 
-# Local
+# LocalWP
 .htaccess
 local-xdebuginfo.php
 
+# Node packages
+node_modules/
 
 # WordPress specifics
 wp-config.php
