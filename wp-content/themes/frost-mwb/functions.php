@@ -138,3 +138,7 @@ function frost_add_site_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'frost_add_site_body_classes' );
+/**
+ * Includes
+ */
+require_once get_template_directory() . '/includes/acf-helpers.php';
