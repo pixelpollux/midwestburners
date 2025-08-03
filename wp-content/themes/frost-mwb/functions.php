@@ -110,3 +110,31 @@ function frost_register_block_pattern_categories() {
 }
 
 add_action( 'init', 'frost_register_block_pattern_categories' );
+
+/**
+ * Add site-specific body classes for multisite targeting.
+ *
+ * @param array $classes Array of body classes.
+ * @return array Modified array of body classes.
+ */
+function frost_add_site_body_classes( $classes ) {
+	if ( is_multisite() ) {
+		$current_blog_id = get_current_blog_id();
+		$current_blog_name = get_bloginfo( 'name' );
+		$current_blog_domain = get_bloginfo( 'url' );
+
+		// Add site ID class.
+		$classes[] = 'site-id-' . $current_blog_id;
+
+		// Add site name class (sanitized for CSS).
+		$site_name_slug = sanitize_title( $current_blog_name );
+		$classes[] = 'site-name-' . $site_name_slug;
+
+		// Add domain-based class.
+		$domain_slug = sanitize_title( parse_url( $current_blog_domain, PHP_URL_HOST ) );
+		$classes[] = 'site-domain-' . $domain_slug;
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'frost_add_site_body_classes' );
