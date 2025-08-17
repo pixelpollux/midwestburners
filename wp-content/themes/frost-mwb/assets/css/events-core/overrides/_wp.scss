@@ -18,7 +18,7 @@
     border-radius: helpers.$space-sm;
 }
 
-// TODO: can't figure out how to fully override autofill color 
+// TODO: can't figure out how to fully override autofill color
 .wp-block-search__input:focus {
     background-color: helpers.$red-100;
     border-radius: helpers.$space-sm;
