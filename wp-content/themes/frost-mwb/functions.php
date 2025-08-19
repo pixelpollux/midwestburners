@@ -31,7 +31,6 @@ if ( ! function_exists( 'frost_setup' ) ) {
 
 		// Remove core block patterns.
 		remove_theme_support( 'core-block-patterns' );
-
 	}
 }
 add_action( 'after_setup_theme', 'frost_setup' );
@@ -41,7 +40,6 @@ add_action( 'wp_enqueue_scripts', 'frost_enqueue_stylesheet' );
 function frost_enqueue_stylesheet() {
 
 	wp_enqueue_style( 'frost', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
-
 }
 
 /**
@@ -52,17 +50,17 @@ function frost_enqueue_stylesheet() {
 function frost_register_block_styles() {
 
 	$block_styles = array(
-		'core/columns' => array(
+		'core/columns'      => array(
 			'columns-reverse' => __( 'Reverse', 'frost' ),
 		),
-		'core/group' => array(
+		'core/group'        => array(
 			'shadow-light' => __( 'Shadow', 'frost' ),
 			'shadow-solid' => __( 'Solid', 'frost' ),
 		),
-		'core/list' => array(
+		'core/list'         => array(
 			'no-disc' => __( 'No Disc', 'frost' ),
 		),
-		'core/quote' => array(
+		'core/quote'        => array(
 			'shadow-light' => __( 'Shadow', 'frost' ),
 			'shadow-solid' => __( 'Solid', 'frost' ),
 		),
@@ -106,7 +104,59 @@ function frost_register_block_pattern_categories() {
 			'description' => __( 'Compare features for your digital products or service plans.', 'frost' ),
 		)
 	);
-
 }
 
 add_action( 'init', 'frost_register_block_pattern_categories' );
+
+/**
+ * Add site-specific body classes for multisite targeting.
+ *
+ * @param array $classes Array of body classes.
+ * @return array Modified array of body classes.
+ */
+function frost_add_site_body_classes( $classes ) {
+	if ( is_multisite() ) {
+		$current_blog_id = get_current_blog_id();
+		$current_blog_name = get_bloginfo( 'name' );
+		$current_blog_domain = get_bloginfo( 'url' );
+
+		// Add site ID class.
+		$classes[] = 'site-id-' . $current_blog_id;
+
+		// Add site name class (sanitized for CSS).
+		$site_name_slug = sanitize_title( $current_blog_name );
+		$classes[] = 'site-name-' . $site_name_slug;
+
+		// Add domain-based class.
+		$domain_slug = sanitize_title( parse_url( $current_blog_domain, PHP_URL_HOST ) );
+		$classes[] = 'site-domain-' . $domain_slug;
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'frost_add_site_body_classes' );
+
+/**
+ * Conditionally enqueue site-specific styles based on site ID.
+ *
+ * @return void
+ */
+function frost_enqueue_main_styles() {
+	if ( ! is_multisite() ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'frost-main-styles',
+		get_stylesheet_directory_uri() . '/assets/css/style-output.css',
+		array(),
+		filemtime( get_stylesheet_directory() . '/assets/css/style-output.css' )
+	);
+
+}
+add_action( 'wp_enqueue_scripts', 'frost_enqueue_main_styles', 25 );
+
+/**
+ * Includes
+ */
+require_once get_template_directory() . '/includes/acf-helpers.php';
