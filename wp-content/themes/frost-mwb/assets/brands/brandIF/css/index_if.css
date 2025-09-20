@@ -1,0 +1,36 @@
+.gb-text {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.gb-dynamic-read-more {
+  display: block;
+  justify-self: end;
+}
+
+.wp-site-blocks > * {
+  margin-block-start: 0;
+}
+
+.wp-site-blocks > .base-container {
+  padding: 0 1rem;
+}
+@media (max-width: 768px) {
+  .wp-site-blocks > .base-container {
+    padding: 0 2rem;
+  }
+}
+
+.wp-block-search__inside-wrapper {
+  border-radius: 0.75rem;
+}
+
+.wp-block-search__input:focus {
+  border-radius: 0.75rem;
+}
+
+.wp-block-search__button.has-background.has-icon .search-icon {
+  stroke: 1rem;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
