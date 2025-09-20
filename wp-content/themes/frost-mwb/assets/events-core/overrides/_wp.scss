@@ -13,6 +13,13 @@
     }
 }
 
+.wp-site-blocks{
+    .has-global-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
 .wp-block-search__inside-wrapper {
     border: 2px solid helpers.$red-500; //TODO: make this standard variable
     border-radius: helpers.$space-sm;
