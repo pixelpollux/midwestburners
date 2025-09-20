@@ -1,4 +1,5 @@
-@use '../abstracts/helpers';
+@use '../../core/core' as *;
+@use '../../core/tokens/sizing' as *;
 
 // TODO: figure out if overrides are still needed with access to the rest of the style files
 .wp-site-blocks>* {
@@ -6,10 +7,10 @@
 }
 
 .wp-site-blocks>.base-container {
-    padding: 0 helpers.$space-base;
+    padding: 0 $space-base;
 
-    @media (max-width: helpers.$bp-medium) {
-        padding: 0 helpers.$space-lg;
+    @media (max-width: $bp-medium) {
+        padding: 0 $space-lg;
     }
 }
 
@@ -21,19 +22,19 @@
 }
 
 .wp-block-search__inside-wrapper {
-    border: 2px solid helpers.$red-500; //TODO: make this standard variable
-    border-radius: helpers.$space-sm;
+    // border: 2px solid $red-500; //TODO: make this standard variable
+    border-radius: $space-sm;
 }
 
 // TODO: can't figure out how to fully override autofill color 
 .wp-block-search__input:focus {
-    background-color: helpers.$red-100;
-    border-radius: helpers.$space-sm;
+    // background-color: $red-100;
+    border-radius: $space-sm;
 }
 
 .wp-block-search__button.has-background.has-icon {
     .search-icon {
-        stroke: helpers.$base;
+        stroke: $space-base;
         stroke-width: 2px; //TODO: make this standard variable
         stroke-linejoin: round;
     }
