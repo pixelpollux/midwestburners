@@ -1,4 +1,4 @@
-@use '../abstracts/helpers';
+@use '../../core/core' as helpers;
 
 // TODO: figure out if overrides are still needed with access to the rest of the style files
 .wp-site-blocks>* {
