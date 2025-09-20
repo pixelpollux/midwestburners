@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "sass assets/compiled-index.scss assets/compiled-index.css --no-source-map",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
