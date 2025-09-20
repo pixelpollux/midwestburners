@@ -1,20 +1,36 @@
-/* Error: Undefined variable.
- *   ,
- * 9 |     padding: 0 helpers.$space-base;
- *   |                ^^^^^^^^^^^^^^^^^^^
- *   '
- *   ../../events-core/overrides/_wp.scss 9:16        @use
- *   ../../events-core/overrides/_overrides.scss 2:1  @use
- *   ../../events-core/_events-core.scss 1:1          @use
- *   sass/index_if.scss 9:1                           root stylesheet */
+.gb-text {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
+.gb-dynamic-read-more {
   display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 9 \2502      padding: 0 helpers.$space-base;\a   \2502                 ^^^^^^^^^^^^^^^^^^^\a   \2575 \a   ../../events-core/overrides/_wp.scss 9:16        @use\a   ../../events-core/overrides/_overrides.scss 2:1  @use\a   ../../events-core/_events-core.scss 1:1          @use\a   sass/index_if.scss 9:1                           root stylesheet";
+  justify-self: end;
+}
+
+.wp-site-blocks > * {
+  margin-block-start: 0;
+}
+
+.wp-site-blocks > .base-container {
+  padding: 0 1rem;
+}
+@media (max-width: 768px) {
+  .wp-site-blocks > .base-container {
+    padding: 0 2rem;
+  }
+}
+
+.wp-block-search__inside-wrapper {
+  border-radius: 0.75rem;
+}
+
+.wp-block-search__input:focus {
+  border-radius: 0.75rem;
+}
+
+.wp-block-search__button.has-background.has-icon .search-icon {
+  stroke: 1rem;
+  stroke-width: 2px;
+  stroke-linejoin: round;
 }
