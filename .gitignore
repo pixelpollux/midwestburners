@@ -11,6 +11,7 @@ vendor/
 composer.json
 composer.lock
 *.idea
+wp-content/themes/frost-mwb/node_modules
 
 # Logs
 *.log
